@@ -26,8 +26,8 @@ class Singleton {
 }
 
 // So every call to Singleton.getInstance() returns the same instance 
-const signInstance = Singleton.getInstance();
+const instance = Singleton.getInstance();
 
-console.log(Singleton.getInstance() === signInstance);
+console.log(Singleton.getInstance() === instance); // true
 
 // Not yet familar with the use case yet, but i understand the implementation in the code example above.
