@@ -22,7 +22,7 @@
  */
 
 // Examples
-// Imagine creating a system for online coding teaching.
+// Imagine creating a system for online course teaching.
 
 enum TEACHER_TYPE {
   CODING="CODING",
@@ -91,14 +91,26 @@ const Teacher2 = TeacherFactory.getTeacher(TEACHER_TYPE.MUSIC, {name: "Jane Doe"
 
 // @Util function to Log teacher info
 function logTeacherInfo(teacher: any) {
-  // check if teacher object is underfined
+  
+  // check if teacher object is empty or not
   const objIsEmpty = (Object.keys(teacher).length) === 0 ? true : false;
 
   if (objIsEmpty) {
-    throw new Error("teacher object is empty");
+    throw new Error("Teacher object is empty");
   }
-
-  // look through the teacher object to determine which type of teacher it's
+  
+  // validate each fields
+  
+  if (!teacher.name) {
+    throw new Error("A teacher must have a name");
+  }
+  
+  if (!teacher.instrument || !teacher.programming_language) {
+    throw new Error("A teacher must have a course field he/she is teaching");
+  }
+  
+	// All fields are available at this point
+  // Look through the teacher object to determine which type of teacher it is
   for (const type in teacher) {
     switch(type) {
       case "instrument":
@@ -110,9 +122,10 @@ function logTeacherInfo(teacher: any) {
   }
 };
 
+// Prints out teachers infos
 console.log(logTeacherInfo(Teacher1));
 console.log(logTeacherInfo(Teacher2));
 
 
-// comment it out or it will throw an error
+//Comment it out or it will throw an error
 console.log(logTeacherInfo({})); //should throw an error
