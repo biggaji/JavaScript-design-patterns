@@ -17,6 +17,7 @@ class Singleton {
   }
 
   static getInstance() {
+    // checks if an instance is already created
     if (Singleton.instance) {
       return Singleton.instance;
     }
@@ -28,6 +29,8 @@ class Singleton {
 // So every call to Singleton.getInstance() returns the same instance 
 const instance = Singleton.getInstance();
 
-console.log(Singleton.getInstance() === instance); // true
+// console.log(Singleton.getInstance() === instance); // true
 
 // Not yet familar with the use case yet, but i understand the implementation in the code example above.
+
+export default Singleton;
