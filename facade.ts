@@ -1,5 +1,5 @@
 /**
- * Facade Pattern
+ * Facade Design Pattern
  * 
  * It aims to provide a simplified way to interact with multiple components by creating a single API.
  * It helps to keep our code more readable by hiding (masking) it underlying interactions.
@@ -70,14 +70,14 @@ class StudentLog {
 }
 
 /**
- * @class AssignStudentId
+ * @class StudentIdManager
  * @description Assigns an Id to a new Student
  * @constructor
  * @param db - Student Database
  * @returns void
  */
 
-class AssignStudentId {
+class StudentIdManager {
   constructor(private db: studentType[]) {
     this.db = db;
   }
@@ -101,12 +101,12 @@ class AssignStudentId {
 
 /**
  * @class StudentAPI
- * @description Built using the Facade Principle, providing a sibgle accesss point to the students group of classes
+ * @description Built using the Facade Principle, providing a single accesss point to the students group of classes
  * @returns void
  */
 
 class StudentAPI {
-  constructor(private student: Student, private logger: StudentLog, private idManager: AssignStudentId, private db: studentType[]) {
+  constructor(private student: Student, private logger: StudentLog, private idManager: StudentIdManager, private db: studentType[]) {
     this.student = student;
     this.logger = logger;
     this.idManager = idManager;
@@ -122,7 +122,7 @@ class StudentAPI {
   }
 }
 
-const studentAPI = new StudentAPI(new Student(studentDB), new StudentLog(), new AssignStudentId(studentDB), studentDB);
+const studentAPI = new StudentAPI(new Student(studentDB), new StudentLog(), new StudentIdManager(studentDB), studentDB);
 studentAPI.welcomeNewStudent("Dolapo Ola");
 studentAPI.welcomeNewStudent("Tobiloba Ajibade");
 studentAPI.welcomeNewStudent("Temiloluwa Omoyele");
