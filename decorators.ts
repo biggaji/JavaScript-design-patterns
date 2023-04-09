@@ -82,25 +82,25 @@ function excludeProperties(propertiesToExclude: string[]) {
 }
 
 
-// class UserService {
-//   private user: UserData[] = users;
+class UserService {
+  private user: UserData[] = users;
   
-//   @excludeProperties(['username'])
-//   getUserInfo = async (user_id: number) => {
-//     const user = await this.user.filter((user) => {
-//       return user.id === user_id;
-//     });
+  @excludeProperties(['username'])
+  getUserInfo = async (user_id: number) => {
+    const user = await this.user.filter((user) => {
+      return user.id === user_id;
+    });
 
-//     if (!user) {
-//       throw new Error("User not found");
-//     }
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-//     return user;
-//   }
-// }
+    return user;
+  }
+}
 
-// const user = new UserService();
-// console.log(user.getUserInfo(1));
+const user = new UserService();
+console.log(user.getUserInfo(1));
 
 /**
  * Property Decorators
